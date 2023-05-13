@@ -4,6 +4,7 @@ import com.study.side.dto.GradeDTO;
 import com.study.side.dto.SubjectStatisticsDTO;
 import com.study.side.service.GradeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +15,8 @@ public class GradeController {
     private final GradeService gradeService;
 
     @PostMapping
-    public SubjectStatisticsDTO calculateGrade(@RequestBody GradeDTO gradeDTO) {
-        return gradeService.calculateStatisticKoreanSubject(gradeDTO);
+    public ResponseEntity<SubjectStatisticsDTO> calculateGrade(@RequestBody GradeDTO gradeDTO) {
+        return ResponseEntity.ok().body(gradeService.calculateStatisticKoreanSubject(gradeDTO));
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 public class LottoInputDTO {
 
-    public Set<Integer> lottoNumbers;
+    private Set<Integer> lottoNumbers;
 
     public void setLottoNumbers(List<Integer> lottoNumbers) {
         Set<Integer> lottoNumbersSet = new HashSet<>(lottoNumbers);

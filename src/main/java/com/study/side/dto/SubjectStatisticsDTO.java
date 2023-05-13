@@ -8,10 +8,10 @@ public class SubjectStatisticsDTO {
 
     private int count;
 
-    private float average;
+    private double average;
 
     @Builder
-    public SubjectStatisticsDTO(int count, float average) {
+    public SubjectStatisticsDTO(int count, double average) {
         this.count = count;
         this.average = average;
     }

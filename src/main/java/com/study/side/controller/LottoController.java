@@ -4,6 +4,7 @@ import com.study.side.dto.LottoInputDTO;
 import com.study.side.dto.LottoOutputDTO;
 import com.study.side.service.LottoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +15,8 @@ public class LottoController {
     private final LottoService lottoService;
 
     @PostMapping
-    public LottoOutputDTO lotto(@RequestBody LottoInputDTO lotto) {
-        return lottoService.isWin(lotto.getLottoNumbers());
+    public ResponseEntity<LottoOutputDTO> lotto(@RequestBody LottoInputDTO lotto) {
+        return ResponseEntity.ok().body(lottoService.isWin(lotto.getLottoNumbers()));
     }
 
 }

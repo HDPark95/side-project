@@ -6,15 +6,21 @@ import com.study.side.dto.SubjectStatisticsDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
 @Service
 public class GradeService {
     public SubjectStatisticsDTO calculateStatisticKoreanSubject(GradeDTO gradeDTO) {
+
         List<GradeEach> filteredList = gradeDTO.getGradeEachList().stream()
                 .filter(gradeEach -> isKoreanSubject(gradeEach.getSubject()))
                 .collect(Collectors.toList());
-        float average = (float) filteredList.stream().mapToInt(GradeEach::getScore).sum() / filteredList.size();
+
+        OptionalDouble optionalAverage = filteredList.stream().mapToInt(GradeEach::getScore).average();
+        double average = optionalAverage.orElse(0);
+
         return SubjectStatisticsDTO
                 .builder()
                 .count(filteredList.size())
